@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>EcoFauna</title>
-
-  <!-- ÍCONES -->
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -26,8 +25,6 @@
       background:#f4fff5;
       color:#1d1d1d;
     }
-
-    /* HEADER */
 
     header{
       width:100%;
@@ -95,8 +92,6 @@
       width:100%;
     }
 
-    /* BOTÃO LOGIN */
-
     .login-user{
       text-decoration:none;
       color:#1f6b3d;
@@ -114,9 +109,7 @@
       border:2px solid white;
       transform:translateY(-2px);
     }
-
-    /* HERO */
-
+/*hero aqui*/
     .hero{
       min-height:100vh;
       display:flex;
@@ -172,7 +165,7 @@
       box-shadow:0 10px 25px rgba(0,0,0,0.2);
     }
 
-    /* SEÇÕES */
+    /*=========================*/
 
     section{
       padding:100px 8%;
@@ -213,7 +206,7 @@
       line-height:1.7;
     }
 
-    /* SOBRE */
+    /*=======================*/
 
     .sobre{
       display:flex;
@@ -246,7 +239,7 @@
       margin-top:50px;
     }
 
-    /* FOOTER */
+    /*====================*/
 
     footer{
       background:#1f6b3d;
@@ -309,8 +302,6 @@
       text-align:center;
       font-size:14px;
     }
-
-    /* MODAIS */
 
     .modal{
       position:fixed;
@@ -378,8 +369,6 @@
       text-decoration:none;
     }
 
-    /* RESPONSIVO */
-
     @media(max-width:900px){
 
       header{
@@ -422,7 +411,7 @@
 
 <body>
 
-<!-- HEADER -->
+<!-- head -->
 
 <header>
 
@@ -455,7 +444,7 @@
 
 </header>
 
-<!-- HERO -->
+<!-- a hero de novo -->
 
 <section class="hero" id="inicio">
 
@@ -485,7 +474,7 @@
 
 </section>
 
-<!-- FUNCIONALIDADES -->
+<!--============================-->
 
 <section id="funcionalidades">
 
@@ -523,8 +512,6 @@
 
 </section>
 
-<!-- BENEFÍCIOS -->
-
 <section id="beneficios">
 
   <h2 class="section-title">
@@ -560,8 +547,6 @@
   </div>
 
 </section>
-
-<!-- SOBRE -->
 
 <section id="sobre">
 
@@ -601,7 +586,7 @@
 
 </section>
 
-<!-- RODAPÉ -->
+<!-- rodapé -->
 
 <footer>
 
@@ -652,7 +637,7 @@
 
 </footer>
 
-<!-- CADASTRO -->
+<!-- o cadastro aqui -->
 
 <div class="modal" id="cadastroModal">
 
@@ -683,7 +668,7 @@
 
 </div>
 
-<!-- MODAL LOGIN -->
+<!-- login modal -->
 
 <div class="modal" id="loginModal">
 
@@ -718,7 +703,7 @@
   const cadastroModal = document.getElementById("cadastroModal");
   const loginModal = document.getElementById("loginModal");
 
-  // CADASTRO
+  // cadastro
 
   function abrirCadastro(){
     cadastroModal.style.display = "flex";
@@ -728,8 +713,8 @@
     cadastroModal.style.display = "none";
   }
 
-  // LOGIN
-
+  // login
+  
   function abrirLogin(){
     loginModal.style.display = "flex";
   }
@@ -738,7 +723,7 @@
     loginModal.style.display = "none";
   }
 
-  // TROCAR TELAS
+  // trocar
 
   function trocarParaLogin(){
     fecharCadastro();
@@ -750,7 +735,7 @@
     abrirCadastro();
   }
 
-  // FECHAR AO CLICAR FORA
+  // fechar ao clicar
 
   window.onclick = function(event){
 
@@ -764,7 +749,7 @@
 
   }
 
-  // SCROLL SUAVE
+  // scroll
 
   document.querySelectorAll('nav a').forEach(link => {
 
