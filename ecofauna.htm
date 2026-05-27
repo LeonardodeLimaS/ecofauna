@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>EcoFauna</title>
+
+  <!-- ÍCONES -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#f4fff5;
+      color:#1d1d1d;
+    }
+
+    /* HEADER */
+
+    header{
+      width:100%;
+      padding:10px 8%;
+      background:#1f6b3d;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      box-shadow:0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    .logo-container{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo-img{
+      width:70px;
+      object-fit:contain;
+    }
+
+    .logo{
+      color:white;
+      font-size:30px;
+      font-weight:bold;
+    }
+
+    .nav-container{
+      display:flex;
+      align-items:center;
+      gap:35px;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:30px;
+      align-items:center;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:white;
+      font-weight:bold;
+      transition:0.3s;
+      position:relative;
+    }
+
+    nav a::after{
+      content:'';
+      width:0%;
+      height:2px;
+      background:white;
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      transition:0.3s;
+    }
+
+    nav a:hover::after{
+      width:100%;
+    }
+
+    /* BOTÃO LOGIN */
+
+    .login-user{
+      text-decoration:none;
+      color:#1f6b3d;
+      background:white;
+      padding:10px 22px;
+      border-radius:12px;
+      font-weight:bold;
+      transition:0.3s;
+      border:2px solid transparent;
+    }
+
+    .login-user:hover{
+      background:transparent;
+      color:white;
+      border:2px solid white;
+      transform:translateY(-2px);
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:140px 8% 80px;
+      gap:50px;
+      flex-wrap:wrap;
+    }
+
+    .hero-text{
+      flex:1;
+    }
+
+    .hero-text h1{
+      font-size:60px;
+      color:#1f6b3d;
+      margin-bottom:20px;
+    }
+
+    .hero-text p{
+      font-size:18px;
+      line-height:1.8;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      background:#1f6b3d;
+      color:white;
+      border:none;
+      padding:15px 35px;
+      border-radius:12px;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#14502d;
+      transform:scale(1.05);
+    }
+
+    .hero-image{
+      flex:1;
+      display:flex;
+      justify-content:center;
+    }
+
+    .hero-image img{
+      width:100%;
+      max-width:500px;
+      border-radius:25px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    /* SEÇÕES */
+
+    section{
+      padding:100px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:42px;
+      color:#1f6b3d;
+      margin-bottom:50px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:white;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card h3{
+      color:#1f6b3d;
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .card p{
+      line-height:1.7;
+    }
+
+    /* SOBRE */
+
+    .sobre{
+      display:flex;
+      align-items:center;
+      gap:50px;
+      flex-wrap:wrap;
+    }
+
+    .sobre img{
+      width:100%;
+      max-width:450px;
+      border-radius:20px;
+      box-shadow:0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .sobre-text{
+      flex:1;
+    }
+
+    .sobre-text p{
+      line-height:1.9;
+      margin-bottom:20px;
+      font-size:17px;
+    }
+
+    .final-btn{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      margin-top:50px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#1f6b3d;
+      color:white;
+      padding:70px 8% 20px;
+      margin-top:50px;
+    }
+
+    .footer-container{
+      display:flex;
+      justify-content:space-between;
+      gap:50px;
+      flex-wrap:wrap;
+      margin-bottom:40px;
+    }
+
+    .footer-logo{
+      max-width:400px;
+    }
+
+    .footer-logo h2{
+      font-size:35px;
+      margin-bottom:15px;
+    }
+
+    .footer-logo p{
+      line-height:1.8;
+    }
+
+    .footer-redes h3{
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .social-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .social-links a{
+      color:white;
+      text-decoration:none;
+      font-size:20px;
+      transition:0.3s;
+    }
+
+    .social-links a:hover{
+      color:#b7ffcb;
+      transform:translateX(5px);
+    }
+
+    .social-links i{
+      margin-right:8px;
+    }
+
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,0.3);
+      padding-top:20px;
+      text-align:center;
+      font-size:14px;
+    }
+
+    /* MODAIS */
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.5);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:2000;
+    }
+
+    .modal-content{
+      background:white;
+      padding:40px;
+      border-radius:20px;
+      width:90%;
+      max-width:400px;
+      position:relative;
+      animation:aparecer 0.3s ease;
+    }
+
+    @keyframes aparecer{
+      from{
+        opacity:0;
+        transform:translateY(-20px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .modal-content h2{
+      color:#1f6b3d;
+      margin-bottom:20px;
+      text-align:center;
+    }
+
+    .modal-content input{
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border:1px solid #ccc;
+      border-radius:10px;
+      outline:none;
+    }
+
+    .close{
+      position:absolute;
+      top:15px;
+      right:20px;
+      font-size:28px;
+      cursor:pointer;
+    }
+
+    .switch-text{
+      text-align:center;
+      margin-top:15px;
+    }
+
+    .switch-text a{
+      color:#1f6b3d;
+      font-weight:bold;
+      text-decoration:none;
+    }
+
+    /* RESPONSIVO */
+
+    @media(max-width:900px){
+
+      header{
+        flex-direction:column;
+        gap:20px;
+      }
+
+      .nav-container{
+        flex-direction:column;
+        gap:20px;
+      }
+
+      nav ul{
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .hero{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .hero-text h1{
+        font-size:42px;
+      }
+
+      .sobre{
+        flex-direction:column;
+      }
+
+      .footer-container{
+        flex-direction:column;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+  <div class="logo-container">
+
+    <img src="/HTML5/imag/logo.png" alt="Logo EcoFauna" class="logo-img">
+
+    <div class="logo">
+      EcoFauna
+    </div>
+
+  </div>
+
+  <div class="nav-container">
+
+    <nav>
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#funcionalidades">Funcionalidades</a></li>
+        <li><a href="#beneficios">Benefícios</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+      </ul>
+    </nav>
+
+    <a href="#" class="login-user" onclick="abrirLogin()">
+      Login
+    </a>
+
+  </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="inicio">
+
+  <div class="hero-text">
+
+    <h1>
+      Protegendo os animais com tecnologia
+    </h1>
+
+    <p>
+      O EcoFauna utiliza inteligência artificial para identificar
+      animais através de fotos e orientar a melhor ação para
+      proteger a fauna e o meio ambiente.
+    </p>
+
+    <button class="btn" onclick="abrirCadastro()">
+      Comece já!
+    </button>
+
+  </div>
+
+  <div class="hero-image">
+
+    <img src="https://images.unsplash.com/photo-1558618047-f4b511aae74d?w=600&auto=format&fit=crop&q=60">
+
+  </div>
+
+</section>
+
+<!-- FUNCIONALIDADES -->
+
+<section id="funcionalidades">
+
+  <h2 class="section-title">
+    Como funciona?
+  </h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>📸 Identificação</h3>
+
+      <p>
+        Tire uma foto do animal e o sistema identifica automaticamente a espécie.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🤖 Inteligência Artificial</h3>
+
+      <p>
+        A IA analisa riscos e orienta qual a melhor decisão para proteger o animal.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🌿 Sustentabilidade</h3>
+
+      <p>
+        O projeto ajuda na preservação ambiental e incentiva atitudes responsáveis.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- BENEFÍCIOS -->
+
+<section id="beneficios">
+
+  <h2 class="section-title">
+    Por que escolher o EcoFauna?
+  </h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>✅ Segurança</h3>
+
+      <p>
+        Informações seguras e orientações inteligentes para situações reais.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🌍 Impacto Ambiental</h3>
+
+      <p>
+        Ajuda diretamente na preservação da fauna e do equilíbrio ambiental.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>💚 Responsabilidade</h3>
+
+      <p>
+        Incentiva ações conscientes e proteção dos animais.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SOBRE -->
+
+<section id="sobre">
+
+  <h2 class="section-title">
+    Sobre nós
+  </h2>
+
+  <div class="sobre">
+
+    <img src="https://images.unsplash.com/photo-1444212477490-ca407925329e?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="sobre-text">
+
+      <p>
+        O EcoFauna é um projeto inovador que conecta tecnologia, sociedade e meio ambiente.
+      </p>
+
+      <p>
+        Nosso objetivo é facilitar a conexão entre pessoas, animais e autoridades através de uma solução prática, rápida e inteligente.
+      </p>
+
+      <p>
+        O projeto também contribui para os ODS 12, 13 e 15, incentivando sustentabilidade e preservação da fauna.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="final-btn">
+
+    <button class="btn" onclick="abrirCadastro()">
+      Cadastre-se!
+    </button>
+
+  </div>
+
+</section>
+
+<!-- RODAPÉ -->
+
+<footer>
+
+  <div class="footer-container">
+
+    <div class="footer-logo">
+
+      <h2>EcoFauna</h2>
+
+      <p>
+        Tecnologia e inteligência artificial ajudando
+        na preservação da fauna e no cuidado com os animais.
+      </p>
+
+    </div>
+
+    <div class="footer-redes">
+
+      <h3>Redes Sociais</h3>
+
+      <div class="social-links">
+
+        <a href="https://www.instagram.com/ecofauna.psvs/" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="#">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+
+        <a href="#">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+
+        <a href="#">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 EcoFauna - Todos os direitos reservados.
+  </div>
+
+</footer>
+
+<!-- CADASTRO -->
+
+<div class="modal" id="cadastroModal">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="fecharCadastro()">
+      &times;
+    </span>
+
+    <h2>Cadastre-se</h2>
+
+    <input type="text" placeholder="Nome">
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Senha">
+
+    <button class="btn" style="width:100%">
+      Criar Conta
+    </button>
+
+    <p class="switch-text">
+      Já possui conta?
+      <a href="#" onclick="trocarParaLogin()">
+        Fazer login
+      </a>
+    </p>
+
+  </div>
+
+</div>
+
+<!-- MODAL LOGIN -->
+
+<div class="modal" id="loginModal">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="fecharLogin()">
+      &times;
+    </span>
+
+    <h2>Login</h2>
+
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Senha">
+
+    <button class="btn" style="width:100%">
+      Entrar
+    </button>
+
+    <p class="switch-text">
+      Não possui conta?
+      <a href="#" onclick="trocarParaCadastro()">
+        Cadastre-se
+      </a>
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+
+  const cadastroModal = document.getElementById("cadastroModal");
+  const loginModal = document.getElementById("loginModal");
+
+  // CADASTRO
+
+  function abrirCadastro(){
+    cadastroModal.style.display = "flex";
+  }
+
+  function fecharCadastro(){
+    cadastroModal.style.display = "none";
+  }
+
+  // LOGIN
+
+  function abrirLogin(){
+    loginModal.style.display = "flex";
+  }
+
+  function fecharLogin(){
+    loginModal.style.display = "none";
+  }
+
+  // TROCAR TELAS
+
+  function trocarParaLogin(){
+    fecharCadastro();
+    abrirLogin();
+  }
+
+  function trocarParaCadastro(){
+    fecharLogin();
+    abrirCadastro();
+  }
+
+  // FECHAR AO CLICAR FORA
+
+  window.onclick = function(event){
+
+    if(event.target == cadastroModal){
+      fecharCadastro();
+    }
+
+    if(event.target == loginModal){
+      fecharLogin();
+    }
+
+  }
+
+  // SCROLL SUAVE
+
+  document.querySelectorAll('nav a').forEach(link => {
+
+    link.addEventListener('click', function(e){
+
+      e.preventDefault();
+
+      const id = this.getAttribute('href');
+
+      document.querySelector(id).scrollIntoView({
+        behavior:'smooth'
+      });
+
+    });
+
+  });
+
+</script>
+
+</body>
+</html>
