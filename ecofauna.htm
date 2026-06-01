@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,6 @@
 
   <title>EcoFauna</title>
 
-  <!--====================================================================-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -26,6 +26,8 @@
       background:#f4fff5;
       color:#1d1d1d;
     }
+
+    /* HEADER */
 
     header{
       width:100%;
@@ -179,8 +181,6 @@
       box-shadow:0 10px 25px rgba(0,0,0,0.2);
     }
 
-    /* SEÇÕES */
-
     section{
       padding:100px 8%;
     }
@@ -248,6 +248,7 @@
       line-height:1.8;
       border:2px solid #d8f5df;
     }
+
 
     .sobre{
       display:flex;
@@ -358,6 +359,7 @@
       text-align:center;
       font-size:14px;
     }
+
 
     #topoBtn{
       position:fixed;
@@ -502,9 +504,9 @@
     <nav>
       <ul>
         <li><a href="#inicio">Início</a></li>
-        <li><a href="#identificacao">Identificação</a></li>
         <li><a href="#funcionalidades">Funcionalidades</a></li>
         <li><a href="#beneficios">Benefícios</a></li>
+        <li><a href="#denuncia">Denúncia</a></li>
         <li><a href="#sobre">Sobre</a></li>
       </ul>
     </nav>
@@ -522,7 +524,7 @@
   <div class="hero-text">
 
     <h1>
-      Protegendo os animais com tecnologia
+      Guardando a natureza com tecnologia
     </h1>
 
     <p>
@@ -586,6 +588,7 @@
 
 </section>
 
+
 <section id="funcionalidades">
 
   <h2 class="section-title">
@@ -621,6 +624,7 @@
   </div>
 
 </section>
+
 
 <section id="beneficios">
 
@@ -658,7 +662,31 @@
 
 </section>
 
-<!-- AJUDAR -->
+<section id="denuncia">
+
+  <h2 class="section-title">
+    Denunciar situação ambiental
+  </h2>
+
+  <div class="identificador">
+
+    <input type="text" placeholder="Informe o tipo da ocorrência">
+
+    <input type="text" placeholder="Local da ocorrência">
+
+    <textarea placeholder="Descreva a situação" style="width:100%; min-height:140px; padding:15px; border-radius:12px; border:2px solid #d8f5df; background:#f4fff5; resize:none; margin-bottom:20px;"></textarea>
+
+    <button class="btn" onclick="enviarDenuncia()">
+      Enviar denúncia
+    </button>
+
+    <div class="resultado">
+      Sua denúncia ajuda na preservação da fauna e no combate aos crimes ambientais.
+    </div>
+
+  </div>
+
+</section>
 
 <section id="ajudar">
 
@@ -693,8 +721,6 @@
 
 </section>
 
-<!-- SOBRE -->
-
 <section id="sobre">
 
   <h2 class="section-title">
@@ -724,8 +750,6 @@
   </div>
 
 </section>
-
-<!-- FOOTER -->
 
 <footer>
 
@@ -797,13 +821,49 @@
 
 </footer>
 
-<!-- BOTÃO TOPO -->
-
 <button id="topoBtn">
   ↑
 </button>
 
-<!-- MODAL LOGIN -->
+<div class="modal" id="cadastroModal">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="fecharCadastro()">
+      &times;
+    </span>
+
+    <h2>Cadastre-se</h2>
+
+    <input type="text" placeholder="Nome completo">
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Senha">
+
+    <div style="margin-bottom:20px; background:#f4fff5; padding:15px; border-radius:12px; border:2px solid #d8f5df; text-align:left;">
+
+      <h3 style="color:#1f6b3d; margin-bottom:10px; font-size:18px;">
+        Cadastro de ONG
+      </h3>
+
+      <input type="text" placeholder="Nome da ONG">
+      <input type="text" placeholder="CNPJ da ONG">
+
+    </div>
+
+    <button class="btn" style="width:100%">
+      Criar Conta
+    </button>
+
+    <p class="switch-text">
+      Já possui conta?
+      <a href="#" onclick="trocarParaLogin()">
+        Fazer login
+      </a>
+    </p>
+
+  </div>
+
+</div>
 
 <div class="modal" id="loginModal">
 
@@ -822,6 +882,13 @@
       Entrar
     </button>
 
+    <p class="switch-text">
+      Não possui conta?
+      <a href="#" onclick="trocarParaCadastro()">
+        Cadastre-se
+      </a>
+    </p>
+
   </div>
 
 </div>
@@ -829,6 +896,9 @@
 <script>
 
   const loginModal = document.getElementById("loginModal");
+  const cadastroModal = document.getElementById("cadastroModal");
+
+  // LOGIN
 
   function abrirLogin(){
     loginModal.style.display = "flex";
@@ -838,13 +908,43 @@
     loginModal.style.display = "none";
   }
 
+  // CADASTRO
+
+  function abrirCadastro(){
+    cadastroModal.style.display = "flex";
+  }
+
+  function fecharCadastro(){
+    cadastroModal.style.display = "none";
+  }
+
+  // TROCAR TELAS
+
+  function trocarParaCadastro(){
+    fecharLogin();
+    abrirCadastro();
+  }
+
+  function trocarParaLogin(){
+    fecharCadastro();
+    abrirLogin();
+  }
+
+  // FECHAR AO CLICAR FORA
+
   window.onclick = function(event){
 
     if(event.target == loginModal){
       fecharLogin();
     }
 
+    if(event.target == cadastroModal){
+      fecharCadastro();
+    }
+
   }
+
+  // SCROLL SUAVE
 
   document.querySelectorAll('nav a').forEach(link => {
 
@@ -861,6 +961,8 @@
     });
 
   });
+
+  // IDENTIFICAÇÃO DE ANIMAIS
 
   function analisarAnimal(){
 
@@ -880,23 +982,60 @@
 
       {
         nome:"Jararaca",
+        especie:"Bothrops jararaca",
         risco:"🔴 Alto risco",
         orientacao:"Não se aproxime. Acione autoridades ambientais.",
-        status:"Animal peçonhento identificado pela IA."
+        status:"Animal peçonhento identificado pela IA.",
+        comportamento:"Defensivo e rápido quando ameaçado.",
+        habitat:"Matas, áreas úmidas e regiões rurais.",
+        lei:"A fauna silvestre brasileira é protegida pela Lei nº 9.605/98."
+      },
+
+      {
+        nome:"Cachorro",
+        especie:"Canis lupus familiaris",
+        risco:"🟢 Domesticável",
+        orientacao:"Caso esteja abandonado, procure abrigo ou ONG parceira.",
+        status:"Animal doméstico identificado pela IA.",
+        comportamento:"Companheiro, sociável e protetor.",
+        habitat:"Ambientes urbanos e residenciais.",
+        autoridade:"Secretaria Ambiental: (88) 3333-2020",
+        lei:"A fauna e os animais domésticos são protegidos pela Lei nº 9.605/98."
+      },
+
+      {
+        nome:"Gato",
+        especie:"Felis catus",
+        risco:"🟢 Domesticável",
+        orientacao:"Verifique se possui identificação ou encaminhe para adoção responsável.",
+        status:"Animal doméstico identificado pela IA.",
+        comportamento:"Independente, territorial e observador.",
+        habitat:"Residências e áreas urbanas.",
+        autoridade:"Secretaria Ambiental: (88) 3333-2020",
+        lei:"A fauna e os animais domésticos são protegidos pela Lei nº 9.605/98."
       },
 
       {
         nome:"Capivara",
+        especie:"Hydrochoerus hydrochaeris",
         risco:"🟢 Baixo risco",
         orientacao:"Mantenha distância e preserve o habitat.",
-        status:"Animal silvestre monitorado com segurança."
+        status:"Animal silvestre monitorado com segurança.",
+        comportamento:"Calmo e sociável em grupo.",
+        habitat:"Margens de rios e lagoas.",
+        lei:"A fauna silvestre brasileira é protegida pela Lei nº 9.605/98."
       },
 
       {
-        nome:"Arara Azul",
-        risco:"🟡 Espécie protegida",
-        orientacao:"Evite aproximação e denuncie tráfico animal.",
-        status:"Espécie em monitoramento ambiental."
+      nome:"Cabra",
+      genero:"Capra",
+      especie:"Capra aegagrus hircus",
+      risco:"🟢 Domesticável",
+      orientacao:"Mantenha alimentação adequada e cuidados veterinários regulares.",
+      status:"Animal doméstico identificado pela IA.",
+      comportamento:"Resistente, curiosa e sociável.",
+      habitat:"Fazendas, sítios e áreas rurais.",
+      lei:"Os animais domésticos são protegidos pela Lei nº 9.605/98."
       }
 
     ];
@@ -912,13 +1051,42 @@
 
       <p><strong>Status:</strong> ${animalAleatorio.status}</p>
 
+      <p><strong>Classificação:</strong> ${animalAleatorio.especie}</p>
+
+      <p><strong>Comportamento:</strong> ${animalAleatorio.comportamento}</p>
+
+      <p><strong>Habitat:</strong> ${animalAleatorio.habitat}</p>
+
       <p>
         <strong>Orientação:</strong>
         ${animalAleatorio.orientacao}
       </p>
 
+      <p>
+        <strong>Proteção Ambiental:</strong>
+        ${animalAleatorio.lei}
+      </p>
+
+      ${animalAleatorio.risco.includes('🟡') || animalAleatorio.risco.includes('🔴') ? `
+      <p>
+        <strong>Autoridade Ambiental:</strong>
+        ${animalAleatorio.autoridade || '(88) 3333-2020'}
+      </p>
+      ` : ''}
+      </p>
+
     `;
   }
+
+  // ENVIAR DENÚNCIA
+
+  function enviarDenuncia(){
+
+    alert("Denúncia enviada com sucesso para a central ambiental do EcoFauna.");
+
+  }
+
+  // BOTÃO TOPO
 
   document.getElementById("topoBtn")
   .addEventListener("click", () => {
